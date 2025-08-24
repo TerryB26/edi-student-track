@@ -11,10 +11,14 @@ const LoginPage = () => {
   const [emailError, setEmailError] = useState('');
   const [passwordError, setPasswordError] = useState('');
   const [showCredentialsError, setShowCredentialsError] = useState(false);
+  const [errorType, setErrorType] = useState('credentials'); // 'credentials' or 'unregistered'
 
   // Dummy credentials for testing
   const DUMMY_EMAIL = 'test@edinova.com';
   const DUMMY_PASSWORD = 'password123';
+  
+  // Simulate registered emails (you can expand this list)
+  const REGISTERED_EMAILS = ['test@edinova.com', 'admin@edinova.com', 'user@edinova.com'];
 
   const handleEmailChange = (e) => {
     setEmail(e.target.value);
@@ -60,7 +64,15 @@ const LoginPage = () => {
     }
 
     if (!hasErrors) {
-      // Check against dummy credentials
+      // First check if email is registered
+      if (!REGISTERED_EMAILS.includes(email.toLowerCase())) {
+        console.log('Email not registered, showing unregistered error modal');
+        setErrorType('unregistered');
+        setShowCredentialsError(true);
+        return;
+      }
+      
+      // Then check against dummy credentials
       if (email === DUMMY_EMAIL && password === DUMMY_PASSWORD) {
         console.log('Login successful!');
         // Redirect to dashboard or home page
@@ -68,6 +80,7 @@ const LoginPage = () => {
       } else {
         // Show credentials error modal
         console.log('Invalid credentials, showing error modal');
+        setErrorType('credentials');
         setShowCredentialsError(true);
       }
     }
@@ -122,6 +135,7 @@ const LoginPage = () => {
           onBackToLogin={handleBackToLogin}
           onSignUp={handleSignUp}
           onClose={handleCloseCredentialsError}
+          errorType={errorType}
         />
       )}
     </>

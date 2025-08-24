@@ -4,7 +4,8 @@ import '../../../css/CredentialsError.css';
 const CredentialsError = ({ 
   onBackToLogin,
   onSignUp,
-  onClose 
+  onClose,
+  errorType = 'credentials' // 'credentials' or 'unregistered'
 }) => {
   // Handle escape key to close modal
   useEffect(() => {
@@ -33,6 +34,32 @@ const CredentialsError = ({
     }
   };
 
+  // Content based on error type
+  const getContent = () => {
+    if (errorType === 'unregistered') {
+      return {
+        icon: 'bi bi-exclamation',
+        iconClass: 'warning',
+        title: "Hmm, that email isn't registered with Edinova yet",
+        message: "Looks like you don't have an account yet! Want to sign up instead?",
+        buttonText: "Create an account",
+        buttonAction: onSignUp
+      };
+    }
+    
+    // Default: credentials error
+    return {
+      icon: 'bi bi-x',
+      iconClass: '',
+      title: "Password or Email Incorrect",
+      message: "Hmm, something's not quite right with the email or password you entered. Let's give it another shot!",
+      buttonText: "Back to log in",
+      buttonAction: onBackToLogin
+    };
+  };
+
+  const content = getContent();
+
   return (
     <div className="credentials-error-overlay" onClick={handleBackdropClick}>
       <div className="credentials-error-modal">
@@ -48,22 +75,22 @@ const CredentialsError = ({
         
         {/* Error Icon */}
         <div className="credentials-error-icon">
-          <div className="credentials-error-icon-circle">
-            <i className="bi bi-x"></i>
+          <div className={`credentials-error-icon-circle ${content.iconClass}`}>
+            <i className={`${content.icon} ${content.iconClass}`}></i>
           </div>
         </div>
         
         {/* Content */}
         <div className="credentials-error-content">
-          <h2 className="credentials-error-title">Password or Email Incorrect</h2>
+          <h2 className="credentials-error-title">{content.title}</h2>
           <p className="credentials-error-message">
-            Hmm, something's not quite right with the email or password you entered. Let's give it another shot!
+            {content.message}
           </p>
         </div>
         
         {/* Action Button */}
-        <button className="credentials-error-button" onClick={onBackToLogin}>
-          <span className="credentials-error-button-text">Back to log in</span>
+        <button className="credentials-error-button" onClick={content.buttonAction}>
+          <span className="credentials-error-button-text">{content.buttonText}</span>
         </button>
       </div>
     </div>
