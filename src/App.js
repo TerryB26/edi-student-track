@@ -1,6 +1,6 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
-import Login from './components/Login';
+import LoginPage from './pages/Authentication/Login/Login';
 import Home from './components/Home';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
@@ -10,7 +10,7 @@ function App() {
     <Router>
       <div className="App">
         <Routes>
-          <Route path="/login" element={<Login />} />
+          <Route path="/login" element={<LoginPage />} />
           <Route path="/home" element={<Home />} />
           <Route path="/" element={<Navigate to="/login" replace />} />
         </Routes>

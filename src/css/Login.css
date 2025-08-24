@@ -1,0 +1,641 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+
+body {
+  	margin: 0; 
+    line-height: normal;
+    font-family: 'Poppins', sans-serif;
+}
+
+.desktopLogIn {
+  	width: 100%;
+  	position: relative;
+  	background-color: #f5f5f7;
+  	height: 1024px;
+  	overflow: hidden;
+  	text-align: left;
+  	font-size: 28px;
+  	color: #003a5d;
+}
+
+.background {
+  	position: absolute;
+  	top: 0px;
+  	left: 0px;
+    background-color: #fff;
+  	width: 617px;
+  	height: 1024px;
+}
+.logoIcon {
+  	position: absolute;
+  	top: 59px;
+  	left: 66px;
+  	width: 183px;
+  	height: 32px;
+}
+.welcomeMessage {
+  	align-self: stretch;
+  	position: relative;
+  	line-height: 34px;
+}
+.input {
+  	align-self: stretch;
+  	position: relative;
+  	font-size: 16px;
+  	line-height: 22px;
+  	color: #4b4b4b;
+}
+.input1 {
+  	align-self: stretch;
+  	position: relative;
+  	line-height: 22px;
+  	font-weight: 600;
+}
+.inputWrapper {
+  	align-self: stretch;
+  	display: flex;
+  	flex-direction: column;
+  	align-items: flex-start;
+  	justify-content: flex-start;
+}
+.input2 {
+  	position: relative;
+  	line-height: 18px;
+  	font-weight: 500;
+    border: none;
+    background: none;
+    width: 100%;
+    font-family: 'Poppins';
+    font-size: 16px;
+}
+.input2::placeholder {
+    color: #a1b5c4;
+}
+.inputField {
+  	align-self: stretch;
+  	border-radius: 20px;
+  	background-color: #fff;
+  	border: 1.5px solid #d9e1e7;
+  	display: flex;
+  	flex-direction: row;
+  	align-items: center;
+  	justify-content: flex-start;
+  	padding: 25px 10px 25px 32px;
+  	cursor: pointer;
+  	color: #a1b5c4;
+}
+.icons {
+  	width: 24px;
+  	height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    color: #a1b5c4;
+}
+
+.icons i {
+    font-size: 18px;
+}
+.vectorIcon {
+  	position: absolute;
+  	height: 68.72%;
+  	width: 100%;
+  	top: 15.61%;
+  	right: 0%;
+  	bottom: 15.67%;
+  	left: 0%;
+  	max-width: 100%;
+  	overflow: hidden;
+  	max-height: 100%;
+}
+.icons {
+  	width: 17.9px;
+  	position: relative;
+  	height: 17.9px;
+  	overflow: hidden;
+  	flex-shrink: 0;
+  	cursor: pointer;
+}
+.errorMessage {
+  	display: flex;
+  	flex-direction: row;
+  	align-items: center;
+  	justify-content: flex-start;
+  	gap: 8px;
+  	color: #ed4c5c;
+  	font-size: 16px;
+}
+.form393Icon {
+  	width: 20px;
+  	position: relative;
+  	height: 20px;
+  	color: #ed4c5c;
+}
+.input3 {
+  	position: relative;
+  	line-height: 22px;
+  	font-weight: 600;
+  	color: #ed4c5c;
+}
+.inputField.error {
+  	border: 1.5px solid #f6a2ab;
+}
+.passwordInputField.error {
+  	border: 1.5px solid #f6a2ab;
+}
+.on2Icon {
+  	width: 26px;
+  	position: relative;
+  	height: 26px;
+}
+.input8 {
+  	position: relative;
+  	text-decoration: underline;
+  	line-height: 22px;
+  	font-weight: 600;
+  	cursor: pointer;
+}
+.optionsContainer {
+  	align-self: stretch;
+  	display: flex;
+  	flex-direction: row;
+  	align-items: center;
+  	justify-content: space-between;
+  	gap: 0px;
+  	text-align: center;
+  	color: #484852;
+}
+.rememberMeContainer {
+  	display: flex;
+  	flex-direction: row;
+  	align-items: center;
+  	justify-content: flex-start;
+  	gap: 8px;
+  	cursor: pointer;
+}
+.container3 {
+  	align-self: stretch;
+  	display: flex;
+  	flex-direction: column;
+  	align-items: flex-start;
+  	justify-content: flex-start;
+  	gap: 24px;
+}
+.choosePlan2 {
+  	position: relative;
+  	line-height: 28px;
+  	font-weight: 600;
+}
+.button {
+  	align-self: stretch;
+  	border-radius: 16px;
+  	background-color: #00a4a9;
+  	display: flex;
+  	flex-direction: row;
+  	align-items: center;
+  	justify-content: center;
+  	padding: 20px 48px;
+  	cursor: pointer;
+}
+.createAnAccount {
+  	text-decoration: underline;
+  	color: #00a4a9;
+  	cursor: pointer;
+}
+.input9 {
+  	position: relative;
+  	font-size: 16px;
+  	line-height: 22px;
+  	text-align: center;
+  	color: #484852;
+}
+.inputParent {
+  	flex: 1;
+  	display: flex;
+  	flex-direction: row;
+  	align-items: center;
+  	justify-content: space-between;
+  	gap: 0px;
+}
+.passwordInputField {
+  	align-self: stretch;
+  	border-radius: 20px;
+  	background-color: #fff;
+  	border: 1.5px solid #d9e1e7;
+  	display: flex;
+  	flex-direction: row;
+  	align-items: center;
+  	justify-content: flex-start;
+  	padding: 25px 32px;
+  	cursor: pointer;
+  	color: #a1b5c4;
+}
+.passwordContainer {
+  	align-self: stretch;
+  	display: flex;
+  	flex-direction: column;
+  	align-items: flex-start;
+  	justify-content: flex-start;
+  	gap: 8px;
+}
+.on2Icon {
+  	width: 26px;
+  	position: relative;
+  	height: 26px;
+}
+.input5 {
+  	position: relative;
+  	line-height: 22px;
+  	font-weight: 600;
+}
+.rememberMeContainer {
+  	display: flex;
+  	flex-direction: row;
+  	align-items: center;
+  	justify-content: flex-start;
+  	gap: 8px;
+    cursor: pointer;
+}
+.input6 {
+  	position: relative;
+  	text-decoration: underline;
+  	line-height: 22px;
+  	font-weight: 600;
+  	cursor: pointer;
+}
+.optionsContainer {
+  	align-self: stretch;
+  	display: flex;
+  	flex-direction: row;
+  	align-items: center;
+  	justify-content: space-between;
+  	gap: 0px;
+  	text-align: center;
+    font-size: 16px;
+  	color: #484852;
+}
+.container3 {
+  	align-self: stretch;
+  	display: flex;
+  	flex-direction: column;
+  	align-items: flex-start;
+  	justify-content: flex-start;
+  	gap: 24px;
+}
+.choosePlan2 {
+  	position: relative;
+  	line-height: 28px;
+  	font-weight: 600;
+}
+.button {
+  	align-self: stretch;
+  	border-radius: 16px;
+  	background-color: #00a4a9;
+  	display: flex;
+  	flex-direction: row;
+  	align-items: center;
+  	justify-content: center;
+  	padding: 20px 48px;
+    cursor: pointer;
+}
+.createAnAccount {
+  	text-decoration: underline;
+  	color: #00a4a9;
+    cursor: pointer;
+}
+.input7 {
+  	position: relative;
+  	font-size: 16px;
+  	line-height: 22px;
+  	text-align: center;
+  	color: #484852;
+}
+.buttonParent {
+  	align-self: stretch;
+  	display: flex;
+  	flex-direction: column;
+  	align-items: center;
+  	justify-content: flex-start;
+  	gap: 20px;
+  	font-size: 18px;
+  	color: #fff;
+}
+.container2 {
+  	align-self: stretch;
+  	display: flex;
+  	flex-direction: column;
+  	align-items: center;
+  	justify-content: center;
+  	gap: 32px;
+  	font-size: 16px;
+  	color: #484852;
+}
+.container {
+  	position: absolute;
+  	top: calc(50% - 258px);
+  	left: 80px;
+  	width: 475px;
+  	display: flex;
+  	flex-direction: column;
+  	align-items: flex-start;
+  	justify-content: flex-start;
+  	gap: 40px;
+}
+.background1 {
+  	position: absolute;
+  	top: 24px;
+  	left: 617px;
+  	border-radius: 50px;
+  	background-color: #00a4a9;
+  	width: 799px;
+  	height: 976px;
+}
+.title {
+  	width: 386px;
+  	position: relative;
+  	letter-spacing: -0.03em;
+  	line-height: 48px;
+  	font-weight: 600;
+  	display: inline-block;
+}
+.foodChallenge2Icon {
+  	width: 705px;
+  	position: relative;
+  	max-height: 100%;
+  	object-fit: cover;
+}
+.titleParent {
+  	position: absolute;
+  	top: calc(50% - 246px);
+  	left: 658px;
+  	display: flex;
+  	flex-direction: column;
+  	align-items: flex-start;
+  	justify-content: flex-start;
+  	gap: 40px;
+  	font-size: 48px;
+  	color: #fff;
+}
+
+/* Responsive Design */
+
+/* Tablet */
+@media (max-width: 1024px) and (min-width: 769px) {
+  .desktopLogIn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    padding: 20px;
+    background-color: #fff; /* White background for tablet */
+  }
+
+  /* Hide right panel and desktop-specific backgrounds */
+  .background, .background1, .titleParent {
+    display: none;
+  }
+  
+  /* Hide the welcome text on tablet */
+  .container > .passwordContainer:first-child {
+      display: none;
+  }
+
+  /* Reset positions and center the main content */
+  .logoIcon, .container {
+    position: static;
+    transform: none;
+    left: auto;
+    top: auto;
+  }
+
+  .logoIcon {
+      position: absolute;
+      top: 15%;
+      left: 50%;
+      transform: translateX(-50%);
+  }
+
+  .container {
+    width: 100%;
+    max-width: 400px; 
+  }
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+  .desktopLogIn {
+    width: 100%;
+    position: relative;
+    background-color: #f5f5f7;
+    height: auto;
+    min-height: 100vh;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 40px 20px;
+    box-sizing: border-box;
+    text-align: left;
+    font-size: 22px;
+    color: #003a5d;
+  }
+
+  /* Hide right panel and desktop backgrounds */
+  .background, .background1, .titleParent {
+    display: none;
+  }
+
+  /* Reset positions */
+  .logoIcon, .container {
+    position: static;
+    transform: none;
+    left: auto;
+    top: auto;
+  }
+  
+  .logoIcon {
+    width: 150px;
+    max-height: 100%;
+    margin-bottom: 40px;
+  }
+
+  .container {
+    width: 100%;
+    max-width: none;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 20px;
+  }
+
+  .passwordContainer {
+    align-self: stretch;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 8px;
+    text-align: center;
+  }
+
+  .container > .passwordContainer:first-child {
+    display: flex;
+    text-align: center;
+    align-items: center;
+  }
+
+  .welcomeMessage {
+    font-size: 22px;
+    line-height: 30px;
+    font-weight: 600;
+    text-align: center;
+  }
+
+  .input {
+    font-size: 16px;
+    line-height: 22px;
+    color: #484852;
+    text-align: center;
+  }
+
+  .input1 {
+    font-size: 16px;
+    line-height: 22px;
+    font-weight: 600;
+    text-align: left;
+  }
+
+  .input5 {
+    font-size: 16px;
+    line-height: 22px;
+  }
+
+  .input6 {
+    font-size: 16px;
+    line-height: 18px;
+    font-weight: 600;
+  }
+
+  .input7 {
+    font-size: 16px;
+    line-height: 22px;
+    text-align: center;
+    color: #484852;
+  }
+
+  .choosePlan2 {
+    font-size: 16px;
+    line-height: 22px;
+    font-weight: 600;
+  }
+
+  .container2 {
+    gap: 32px;
+  }
+
+  .containerParent {
+    align-self: stretch;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    gap: 20px;
+  }
+
+  /* Mobile Error Styles */
+  .errorMessage {
+    align-self: stretch;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 6px;
+    color: #ed4c5c;
+    font-size: 16px;
+  }
+
+  .form393Icon {
+    width: 14px;
+    height: 14px;
+    color: #ed4c5c;
+  }
+
+  .input3 {
+    flex: 1;
+    position: relative;
+    line-height: 22px;
+    color: #ed4c5c;
+  }
+
+  .inputField {
+    border-radius: 18px;
+    padding: 20px 10px 20px 32px;
+  }
+
+  .passwordInputField {
+    border-radius: 18px;
+    padding: 20px 32px;
+  }
+
+  .inputField.error {
+    border: 1.5px solid #f6a2ab;
+  }
+
+  .passwordInputField.error {
+    border: 1.5px solid #f6a2ab;
+  }
+
+  /* Mobile specific styles for remember me and options */
+  .on2Icon {
+    width: 24px;
+    height: 24px;
+  }
+
+  .rememberMeContainer {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 8px;
+  }
+
+  .optionsContainer {
+    align-self: stretch;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0px;
+    text-align: center;
+    color: #484852;
+  }
+
+  .input8 {
+    position: relative;
+    text-decoration: underline;
+    line-height: 22px;
+    font-weight: 600;
+  }
+
+  .input9 {
+    position: relative;
+    line-height: 22px;
+    text-align: center;
+    color: #484852;
+  }
+
+  .button {
+    align-self: stretch;
+    border-radius: 16px;
+    background-color: #00a4a9;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    padding: 20px 48px;
+    cursor: pointer;
+  }
+}
