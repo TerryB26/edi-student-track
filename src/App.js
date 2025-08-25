@@ -4,6 +4,7 @@ import LoginPage from './pages/Authentication/Login/Login';
 import Home from './components/Home';
 import UnitsPage from './pages/Units/Units';
 import UnitDetailPage from './pages/UnitDetail/UnitDetail';
+import HYEWPage from './pages/HYEW/HYEW';
 import ProfilePage from './pages/Profile/Profile';
 import SettingsPage from './pages/Settings/Settings';
 import HelpPage from './pages/Help/Help';
@@ -51,6 +52,11 @@ function App() {
           <Route path="/units/:unitId" element={
             <LayoutWithNavbar>
               <UnitDetailPage />
+            </LayoutWithNavbar>
+          } />
+          <Route path="/units/:unitId/hyew" element={
+            <LayoutWithNavbar>
+              <HYEWPage />
             </LayoutWithNavbar>
           } />
           <Route path="/profile" element={

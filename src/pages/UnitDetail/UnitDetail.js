@@ -9,7 +9,7 @@ export default function UnitDetailPage() {
 
   const handleBack = () => navigate('/units');
   const handleReport = () => alert('Report submitted');
-  const handleStart = () => alert(`Starting Unit ${unitId}`);
+  const handleStart = () => navigate(`/units/${unitId || 1}/hyew`);
 
   const unitIndex = Number(unitId) || 1;
   const sectionLabel = `Section 1, Module ${unitIndex}`;
@@ -26,7 +26,7 @@ export default function UnitDetailPage() {
       onBack={handleBack}
       onReport={handleReport}
       onStart={handleStart}
-      progress={35}
+      progress={5}
     />
   );
 }

@@ -34,18 +34,18 @@ const UnitDetail = ({
 
       <div className="card unit-card">
         <div className="card-body">
-          <div className="unit-card-header">
-            <span className="marker" aria-hidden="true"></span>
-            <h3 className="unit-heading">{unitTitle}</h3>
-          </div>
-
-          {/* Module progress (not video progress) */}
+          {/* Module progress (not video progress) – shown above the title per design */}
           <div className="unit-progress" aria-label="Module progress">
             <div className="progress-wrap">
               <div className="progress-track">
                 <div className="progress-fill" style={{ width: `${Math.max(0, Math.min(progress, 100))}%` }} />
               </div>
             </div>
+          </div>
+
+          <div className="unit-card-header">
+            <span className="marker" aria-hidden="true"></span>
+            <h3 className="unit-heading">{unitTitle}</h3>
           </div>
 
           <div className="unit-media" aria-label="Unit media">
@@ -59,8 +59,6 @@ const UnitDetail = ({
           </div>
 
           <div className="unit-actions">
-            <button className="btn btn-primary-accent" onClick={onStart}>Let's get started</button>
-            <span className="spacer" aria-hidden="true"></span>
             <button className="link-transcript" onClick={onToggleTranscript}>
               {showTranscript ? (
                 <>
@@ -74,6 +72,7 @@ const UnitDetail = ({
                 </>
               )}
             </button>
+            <button className="btn btn-primary-accent" onClick={onStart}>Let's get started</button>
           </div>
         </div>
       </div>
