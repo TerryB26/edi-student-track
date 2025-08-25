@@ -61,7 +61,7 @@ const Navbar = ({ onToggle }) => {
     },
     { 
       name: 'Coach Nova', 
-      icon: '/images/assets/Group 10.svg',
+  icon: '/images/assets/user.svg',
       type: 'item'
     },
     { 
@@ -111,12 +111,34 @@ const Navbar = ({ onToggle }) => {
         <div className="navbar-content">
           {/* Logo Section */}
           <div className="navbar-logo">
-            {isCollapsed ? (
-              <div className="logo-collapsed">
-                <img src="/images/Logo.png" alt="Edinova" className="logo-icon" />
-              </div>
-            ) : (
+            {isMobile ? (
               <img src="/images/Logo.png" alt="Edinova" className="logo-full" />
+            ) : (
+              isCollapsed ? (
+                <div className="logo-collapsed">
+                  <img src="/images/assets/group-10.svg" alt="Edinova Mark" className="logo-icon" />
+                </div>
+              ) : (
+                <img src="/images/Logo.png" alt="Edinova" className="logo-full" />
+              )
+            )}
+
+            {isMobile && (
+              <button 
+                className="mobile-toggle"
+                onClick={toggleCollapse}
+                aria-label={isCollapsed ? 'Open menu' : 'Close menu'}
+              >
+                {isCollapsed ? (
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M4 7h16M4 12h16M4 17h16" stroke="#4B4B4B" strokeWidth="2" strokeLinecap="round"/>
+                  </svg>
+                ) : (
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M6 6l12 12M18 6l-12 12" stroke="#4B4B4B" strokeWidth="2" strokeLinecap="round"/>
+                  </svg>
+                )}
+              </button>
             )}
           </div>
 
@@ -179,21 +201,24 @@ const Navbar = ({ onToggle }) => {
           </div>
         </div>
 
-        {/* Collapse Toggle */}
-        <div className="navbar-footer">
-          <button 
-            className="collapse-toggle"
-            onClick={toggleCollapse}
-            title={isCollapsed ? 'Expand Menu' : 'Collapse Menu'}
-          >
-            <img 
-              src="/images/assets/arrow-forward-filled.svg" 
-              alt="Toggle" 
-              className={`toggle-icon ${isCollapsed ? 'rotated' : ''}`} 
-            />
-            {!isCollapsed && <span className="nav-text">Collapse Menu</span>}
-          </button>
-        </div>
+        {/* Collapse Toggle (desktop only) */}
+        {!isMobile && (
+          <div className="navbar-footer">
+            <button 
+              className="collapse-toggle"
+              onClick={toggleCollapse}
+              title={isCollapsed ? 'Expand Menu' : 'Collapse Menu'}
+              aria-label={isCollapsed ? 'Open menu' : 'Close menu'}
+            >
+              <img 
+                src="/images/assets/arrow-forward-filled.svg" 
+                alt="Toggle" 
+                className={`toggle-icon ${isCollapsed ? 'rotated' : ''}`} 
+              />
+              {!isCollapsed && <span className="nav-text">Collapse Menu</span>}
+            </button>
+          </div>
+        )}
       </div>
     </nav>
   );

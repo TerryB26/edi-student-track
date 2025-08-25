@@ -16,6 +16,26 @@ body {
   	font-size: 28px;
   	color: #003a5d;
 }
+/* Ensure the left-side login form never overflows into the right pane on desktop */
+@media (min-width: 1025px) {
+	.desktopLogIn .container,
+	.desktopLogIn .container2,
+	.desktopLogIn .container3,
+	.desktopLogIn .passwordContainer,
+	.desktopLogIn .buttonParent,
+	.desktopLogIn .inputField,
+	.desktopLogIn .passwordInputField {
+		box-sizing: border-box;
+		max-width: 475px; /* matches .container width */
+		width: 100%;
+	}
+
+	/* Extra safety: keep the input content within the pill */
+	.desktopLogIn .inputField,
+	.desktopLogIn .passwordInputField {
+		overflow: hidden;
+	}
+}
 
 .background {
   	position: absolute;
@@ -79,9 +99,10 @@ body {
   	flex-direction: row;
   	align-items: center;
   	justify-content: flex-start;
-  	padding: 25px 10px 25px 32px;
+  	padding: 15px 32px;
   	cursor: pointer;
   	color: #a1b5c4;
+    box-sizing: border-box;
 }
 .icons {
   	width: 24px;
@@ -226,9 +247,10 @@ body {
   	flex-direction: row;
   	align-items: center;
   	justify-content: flex-start;
-  	padding: 25px 32px;
+  	padding: 15px 32px;
   	cursor: pointer;
   	color: #a1b5c4;
+    box-sizing: border-box;
 }
 .passwordContainer {
   	align-self: stretch;
@@ -340,6 +362,7 @@ body {
   	align-items: flex-start;
   	justify-content: flex-start;
   	gap: 40px;
+    z-index: 1;
 }
 .background1 {
   	position: absolute;

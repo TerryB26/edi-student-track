@@ -51,9 +51,8 @@
 
 .navbar.mobile .navbar-container {
   padding: 12px 16px;
-  flex-direction: row;
-  align-items: center;
-  justify-content: space-between;
+  flex-direction: column; /* stack header and items */
+  gap: 8px;
 }
 
 .navbar.mobile.collapsed .navbar-container {
@@ -68,9 +67,9 @@
 }
 
 .navbar.mobile .navbar-content {
-  flex-direction: row;
-  align-items: center;
-  gap: 24px;
+  flex-direction: column; /* vertical list */
+  align-items: stretch;
+  gap: 8px;
 }
 
 /* Logo Section */
@@ -80,6 +79,9 @@
 
 .navbar.mobile .navbar-logo {
   margin-bottom: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between; /* logo left, button right */
 }
 
 /* Logo Section */
@@ -113,14 +115,31 @@
 }
 
 .navbar.mobile .logo-full {
-  width: 100px;
-  height: auto;
-  max-height: 18px;
+  width: auto;            /* keep aspect ratio */
+  height: 28px;           /* readable height on mobile */
+  max-width: 160px;       /* prevent overflow */
+  object-fit: contain;
 }
 
 .navbar.mobile.collapsed .logo-full {
+  width: auto;            /* keep aspect ratio */
+  height: 28px;           /* same as expanded mobile */
+}
+
+/* Align collapsed logo with icon column */
+.navbar.desktop.collapsed .navbar-logo {
+  display: flex;
+  justify-content: center;
+}
+
+.navbar.collapsed .logo-collapsed {
+  margin: 0 auto;
+}
+
+/* Match visual size to other icons for consistency */
+.navbar.collapsed .logo-icon {
   width: 24px;
-  height: 32px;
+  height: 24px;
 }
 
 /* Navigation Items */
@@ -131,11 +150,10 @@
 }
 
 .navbar.mobile .navbar-items {
-  flex-direction: row;
-  gap: 8px;
-  overflow-x: auto;
-  scrollbar-width: none;
-  -ms-overflow-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  overflow: visible;
 }
 
 .navbar.mobile .navbar-items::-webkit-scrollbar {
@@ -154,8 +172,8 @@
 }
 
 .navbar.mobile .nav-section {
-  flex-direction: row;
-  gap: 8px;
+  flex-direction: column;
+  gap: 4px;
 }
 
 .nav-section-title {
@@ -163,12 +181,16 @@
   font-weight: 600;
   color: #003a5d;
   line-height: 1.4;
-  padding: 8px 16px; /* Reduced padding */
+  /* Align with item text start: 16px padding + 24px icon + 12px gap = 52px */
+  padding: 8px 16px 8px 52px;
   margin-bottom: 4px; /* Reduced margin */
+  text-align: left; /* ensure left alignment */
+  display: block;
+  width: 100%;
 }
 
 .navbar.mobile .nav-section-title {
-  display: none;
+  display: block; /* show on mobile drawer */
 }
 
 /* Navigation Items */
@@ -236,14 +258,20 @@
 /* Hover States */
 .nav-item:hover:not(.disabled):not(.active) {
   background-color: #e5f5ff;
-  border: 2px solid #003a5d; /* Reduced border width */
+  border: 2px solid #003a5d; /* subtle outline */
   color: #003a5d;
-  height: 50px; /* Slightly larger on hover */
-  box-sizing: border-box;
+  /* keep the same height to avoid layout shift */
 }
 
-.nav-item:hover:not(.disabled):not(.active) .nav-icon {
-  filter: brightness(0) saturate(100%) invert(15%) sepia(100%) saturate(1000%) hue-rotate(180deg);
+/* Ensure icons are always visible and don’t depend on hover */
+.nav-item .nav-icon {
+  opacity: 1; /* always visible */
+  filter: none; /* show native icon colors */
+}
+
+/* Improve contrast of icon on active items by inverting to white if SVG supports currentColor */
+.nav-item.active .nav-icon {
+  filter: brightness(0) invert(100%); /* keep high contrast on active */
 }
 
 /* Disabled State */
@@ -284,7 +312,7 @@
 }
 
 .navbar.mobile .nav-divider {
-  display: none;
+  display: block; /* visible divider on mobile drawer */
 }
 
 /* Navbar Footer */
@@ -294,9 +322,7 @@
 }
 
 .navbar.mobile .navbar-footer {
-  margin-top: 0;
-  padding-top: 0;
-  margin-left: auto;
+  display: none; /* hidden on mobile; toggle is in header */
 }
 
 /* Collapse Toggle */
@@ -325,10 +351,27 @@
 }
 
 .navbar.mobile .collapse-toggle {
-  width: auto;
-  padding: 8px 12px; /* Reduced padding */
+  width: 40px;
+  padding: 8px; /* icon button */
   height: 40px; /* Reduced height */
-  min-width: 40px; /* Reduced minimum width */
+  min-width: 40px;
+}
+
+/* Mobile header toggle button */
+.mobile-toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border: none;
+  background: transparent;
+  border-radius: 8px;
+}
+
+.mobile-toggle:active,
+.mobile-toggle:hover {
+  background: #f5f5f7;
 }
 
 .collapse-toggle:hover {
