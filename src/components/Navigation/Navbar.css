@@ -274,6 +274,12 @@
   filter: brightness(0) invert(100%); /* keep high contrast on active */
 }
 
+/* Make My Journey icon gray when not active */
+.nav-item.journey:not(.active) .nav-icon {
+  filter: grayscale(100%) brightness(0.6);
+  opacity: 0.9;
+}
+
 /* Disabled State */
 .nav-item.disabled {
   color: #cacaca;

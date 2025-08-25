@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import LoginPage from './pages/Authentication/Login/Login';
 import Home from './components/Home';
+import UnitsPage from './pages/Units/Units';
+import UnitDetailPage from './pages/UnitDetail/UnitDetail';
 import ProfilePage from './pages/Profile/Profile';
 import SettingsPage from './pages/Settings/Settings';
 import HelpPage from './pages/Help/Help';
@@ -39,6 +41,16 @@ function App() {
           <Route path="/home" element={
             <LayoutWithNavbar>
               <Home />
+            </LayoutWithNavbar>
+          } />
+          <Route path="/units" element={
+            <LayoutWithNavbar>
+              <UnitsPage />
+            </LayoutWithNavbar>
+          } />
+          <Route path="/units/:unitId" element={
+            <LayoutWithNavbar>
+              <UnitDetailPage />
             </LayoutWithNavbar>
           } />
           <Route path="/profile" element={

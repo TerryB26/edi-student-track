@@ -39,7 +39,7 @@ const Navbar = ({ onToggle }) => {
         navigate('/login');
         break;
       case 'My Journey':
-        navigate('/home');
+  navigate('/units');
         break;
       case 'My Profile':
         navigate('/profile');
@@ -165,7 +165,7 @@ const Navbar = ({ onToggle }) => {
                     )
                   ) : (
                     <button
-                      className={`nav-item ${activeItem === item.name ? 'active' : ''} ${item.disabled ? 'disabled' : ''}`}
+                      className={`nav-item ${item.name === 'My Journey' ? 'journey' : ''} ${activeItem === item.name ? 'active' : ''} ${item.disabled ? 'disabled' : ''}`}
                       onClick={() => !item.disabled && handleItemClick(item.name)}
                       disabled={item.disabled}
                       title={isCollapsed ? item.name : ''}
