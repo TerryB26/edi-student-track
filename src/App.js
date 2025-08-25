@@ -4,6 +4,7 @@ import LoginPage from './pages/Authentication/Login/Login';
 import Home from './components/Home';
 import ProfilePage from './pages/Profile/Profile';
 import SettingsPage from './pages/Settings/Settings';
+import HelpPage from './pages/Help/Help';
 import Navbar from './components/Navigation/Navbar';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
@@ -48,6 +49,11 @@ function App() {
           <Route path="/settings" element={
             <LayoutWithNavbar>
               <SettingsPage />
+            </LayoutWithNavbar>
+          } />
+          <Route path="/help" element={
+            <LayoutWithNavbar>
+              <HelpPage />
             </LayoutWithNavbar>
           } />
           

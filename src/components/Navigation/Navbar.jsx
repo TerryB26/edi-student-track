@@ -47,6 +47,9 @@ const Navbar = ({ onToggle }) => {
       case 'Settings':
         navigate('/settings');
         break;
+      case 'Help':
+        navigate('/help');
+        break;
       default:
         // For other items, just set as active for now
         break;
