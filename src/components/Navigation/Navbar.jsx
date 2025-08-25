@@ -41,6 +41,12 @@ const Navbar = ({ onToggle }) => {
       case 'My Journey':
         navigate('/home');
         break;
+      case 'My Profile':
+        navigate('/profile');
+        break;
+      case 'Settings':
+        navigate('/settings');
+        break;
       default:
         // For other items, just set as active for now
         break;

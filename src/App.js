@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import LoginPage from './pages/Authentication/Login/Login';
 import Home from './components/Home';
+import ProfilePage from './pages/Profile/Profile';
+import SettingsPage from './pages/Settings/Settings';
 import Navbar from './components/Navigation/Navbar';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
@@ -36,6 +38,16 @@ function App() {
           <Route path="/home" element={
             <LayoutWithNavbar>
               <Home />
+            </LayoutWithNavbar>
+          } />
+          <Route path="/profile" element={
+            <LayoutWithNavbar>
+              <ProfilePage />
+            </LayoutWithNavbar>
+          } />
+          <Route path="/settings" element={
+            <LayoutWithNavbar>
+              <SettingsPage />
             </LayoutWithNavbar>
           } />
           
