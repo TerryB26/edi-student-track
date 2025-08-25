@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useMemo, useState } from 'react';
 import './HYEW.css';
 
 const items = [
@@ -9,11 +9,14 @@ const items = [
   { id: 'microwave', label: 'Microwave', img: '/images/assets/appliancesfilledcolor-3.svg' },
 ];
 
-export default function HYEW({ sectionLabel, moduleTitle, onBack, onReport, onKeepGoing }) {
+export default function HYEW({ sectionLabel, moduleTitle, onBack, onReport, onKeepGoing, onSkip }) {
+  // State machine for the micro-lesson
+  // stages: 'choose' | 'detail' | 'prompt' | 'inventor' | 'result-success' | 'result-fail'
+  const [stage, setStage] = useState('choose');
   const [selected, setSelected] = useState(null);
-  const [showPrompt, setShowPrompt] = useState(false);
+  const [inventorText, setInventorText] = useState('');
 
-  const selectedItem = items.find(i => i.id === selected);
+  const selectedItem = useMemo(() => items.find(i => i.id === selected), [selected]);
 
   return (
     <div className="hyew-page">
@@ -36,7 +39,7 @@ export default function HYEW({ sectionLabel, moduleTitle, onBack, onReport, onKe
       </div>
 
       <div className="hyew-grid">
-        {!selected && (
+        {stage === 'choose' && (
           <div className="card hyew-card">
             <div className="card-body">
               <div className="hyew-header">
@@ -53,7 +56,7 @@ export default function HYEW({ sectionLabel, moduleTitle, onBack, onReport, onKe
                   <button
                     key={it.id}
                     className={`select-tile ${selected === it.id ? 'selected' : ''}`}
-                    onClick={() => { setSelected(it.id); setShowPrompt(false); }}
+                    onClick={() => { setSelected(it.id); setStage('detail'); }}
                   >
                     <img src={it.img} alt={it.label} />
                     <span>{it.label}</span>
@@ -64,7 +67,7 @@ export default function HYEW({ sectionLabel, moduleTitle, onBack, onReport, onKe
           </div>
         )}
 
-        {selected && selectedItem && (
+  {(stage === 'detail' || stage === 'prompt') && selectedItem && (
           <div className="card hyew-detail-card">
             <div className="card-body">
               <div className="detail-header">
@@ -87,24 +90,92 @@ export default function HYEW({ sectionLabel, moduleTitle, onBack, onReport, onKe
                 </div>
               </div>
               <div className="detail-actions">
-                <button className="btn btn-ghost" onClick={() => setSelected(null)}>Select a different item</button>
-                <button className="btn btn-primary-accent" onClick={() => { setShowPrompt(true); onKeepGoing?.(selectedItem); }}>Keep Going</button>
+                <button className="btn btn-ghost" onClick={() => { setSelected(null); setStage('choose'); }}>Select a different item</button>
+                <button className="btn btn-primary-accent" onClick={() => { setStage('prompt'); onKeepGoing?.(selectedItem); }}>Keep Going</button>
               </div>
             </div>
           </div>
         )}
       </div>
 
-      {showPrompt && (
+    {stage === 'prompt' && (
         <div className="question-prompt">
           <div className="prompt-card">
             <p className="prompt-title">Select a question you would like to answer</p>
             <div className="prompt-actions">
-              <button className="prompt-btn prompt-orange">Make this an invention</button>
-              <button className="prompt-btn prompt-green">Business Opportunity</button>
+              <button className="prompt-btn prompt-orange" onClick={() => setStage('inventor')}>
+                <i className="bi bi-lightbulb-fill"></i>
+                <span>Think Like an Inventor</span>
+              </button>
+              <button className="prompt-btn prompt-green" onClick={() => alert('Business Opportunity coming soon')}>
+                <i className="bi bi-buildings-fill"></i>
+                <span>Business Opportunity</span>
+              </button>
             </div>
           </div>
-          <img className="prompt-figure" src="/images/assets/man.svg" alt="Coach" />
+          <img className="prompt-figure" src="/images/assets/corner-man.png" alt="Coach" />
+        </div>
+      )}
+
+      {stage === 'inventor' && (
+        <div className="inventor-wrap">
+          <div className="inventor-card">
+            <div className="inventor-header">
+              <i className="bi bi-lightbulb-fill"></i>
+              <h3>Think Like an Inventor</h3>
+            </div>
+            <p className="inventor-sub">
+              What eating tool could you create today that’s better suited for modern food, like noodles, wraps,
+              or one-handed meals?
+            </p>
+            <div className="inventor-input">
+              <textarea
+                placeholder="I would create..."
+                value={inventorText}
+                onChange={(e) => setInventorText(e.target.value)}
+                rows={5}
+              />
+            </div>
+            <div className="inventor-actions">
+              <button
+                className="inventor-submit"
+                disabled={inventorText.trim().length < 5}
+                onClick={() => {
+                  const ok = inventorText.trim().length >= 25; // simple heuristic
+                  setStage(ok ? 'result-success' : 'result-fail');
+                }}
+              >
+                Submit
+              </button>
+            </div>
+          </div>
+          <img className="inventor-figure" src="/images/assets/corner-man.png" alt="Coach" />
+        </div>
+      )}
+
+      {stage === 'result-fail' && (
+        <div className="result-card result-fail">
+          <img src="/images/assets/man.svg" alt="Coach" className="result-figure" />
+          <h3 className="result-title">Hey Nova'preneur. That answer may have gone off-track</h3>
+          <p className="result-sub">Want to give it another go?</p>
+          <button className="btn btn-ghost" onClick={() => setStage('inventor')}>Try Again</button>
+        </div>
+      )}
+
+      {stage === 'result-success' && (
+        <div className="result-card result-success">
+          <img src="/images/assets/man.svg" alt="Coach" className="result-figure" />
+          <h3 className="result-title">Great Job!</h3>
+          <p className="result-sub">Want to try another item?</p>
+          <div className="result-grid">
+            {items.filter(i => i.id !== selected).map(it => (
+              <button key={it.id} className="result-tile" onClick={() => { setSelected(it.id); setInventorText(''); setStage('detail'); }}>
+                <img src={it.img} alt={it.label} />
+                <span>{it.label}</span>
+              </button>
+            ))}
+          </div>
+          <button className="result-skip" onClick={() => onSkip?.(selectedItem)}>Skip</button>
         </div>
       )}
     </div>
