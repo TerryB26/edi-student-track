@@ -1,21 +1,15 @@
 .settings-page { text-align: left; }
-
 .settings-card { background: #fff; border: 1px solid #e5e7eb; border-radius: 12px; }
-
 .settings-list { display: flex; flex-direction: column; gap: 16px; }
-
 .settings-row { display: flex; align-items: center; justify-content: space-between; padding: 8px 0; border-bottom: 1px solid #f2f2f2; }
 .settings-row:last-child { border-bottom: none; }
-
 .settings-label { font-weight: 500; }
+.toggle-input { width: 3rem; height: 1.5rem; cursor: pointer; }
+/* Stronger override for Bootstrap's default blue */
 
-/* Toggle beautify */
-.toggle-input { width: 3rem; height: 1.5rem; cursor: pointer; accent-color: #ff8156; }
-.toggle-input:checked { background-color: #ff8156; border-color: #ff8156; }
-.toggle-input:focus { box-shadow: 0 0 0 0.25rem rgba(255, 129, 86, 0.25); }
+.form-switch .form-check-input.toggle-input:checked { background-color: #FE632F !important; border-color: #FE632F !important; }
+.form-switch .form-check-input.toggle-input:focus { box-shadow: 0 0 0 0.25rem rgba(254, 99, 47, 0.25) !important; }
 
-/* Reuse btn-teal from Profile.css intent; define here too in case of isolation */
-.btn-teal { background: #00a4a9; color: #fff; border-radius: 8px; padding: 10px 20px; }
-.btn-teal:hover { background: #009096; color: #fff; }
-
+.btn.btn-teal { background-color: #00a4a9 !important; border-color: #00a4a9 !important; color: #fff !important; border-radius: 8px; padding: 10px 20px; font-weight: 700; }
+.btn.btn-teal:hover { background-color: #009096 !important; border-color: #009096 !important; color: #fff !important; }
 .page-title { margin: 0 0 16px 0; font-weight: 600; color: #003a5d; }

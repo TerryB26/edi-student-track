@@ -10,7 +10,12 @@ const UnitDetail = ({
   onBack,
   onReport,
   onStart,
+  onStartModule2,
+  onStartEasterEgg,
+  onMarkComplete,
   progress = 0, // 0–100
+  showCompleted = false,
+  showEasterEgg = false,
 }) => {
   return (
     <div className="unit-detail-page">
@@ -72,7 +77,19 @@ const UnitDetail = ({
                 </>
               )}
             </button>
-            <button className="btn btn-primary-accent" onClick={onStart}>Let's get started</button>
+            <button className="btn btn-primary-accent" onClick={onStart}>Start Module 1</button>
+            {onStartModule2 && (
+              <button className="btn btn-ghost" onClick={onStartModule2}>Start Module 2</button>
+            )}
+            {onStartEasterEgg && (
+              <button className="btn btn-ghost" onClick={onStartEasterEgg}>Easter Egg</button>
+            )}
+            {onMarkComplete && (
+              <button className="btn btn-ghost" onClick={onMarkComplete}>{showCompleted ? 'Completed' : 'Mark Module Complete'}</button>
+            )}
+            {showEasterEgg && onStartEasterEgg && (
+              <button className="btn btn-primary-accent" onClick={onStartEasterEgg}>Open Easter Egg</button>
+            )}
           </div>
         </div>
       </div>

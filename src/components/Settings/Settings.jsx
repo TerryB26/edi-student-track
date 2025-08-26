@@ -53,7 +53,11 @@ const Settings = ({
             </div>
           </div>
 
-          <button className="btn btn-teal mt-3" onClick={onSave}>Save settings</button>
+          <div className="d-flex justify-content-start mt-3">
+            <button className="btn btn-teal" onClick={onSave}>
+              <i className="bi bi-save me-2"/>Save
+            </button>
+          </div>
         </div>
       </div>
     </div>

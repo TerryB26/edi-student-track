@@ -1,0 +1,24 @@
+.home-landing {
+  display: grid;
+  place-items: center;
+  min-height: calc(100vh - 48px);
+  background: #ffffff;
+}
+
+.home-brand { text-align: center; }
+.home-logo {
+  width: clamp(160px, 24vw, 320px);
+  height: auto;
+  image-rendering: -webkit-optimize-contrast;
+}
+.home-subtitle {
+  margin: 12px 0 0 0;
+  font-size: clamp(16px, 2.4vw, 22px);
+  letter-spacing: 0.2em;
+  color: #1f2a44;
+  opacity: 0.8;
+}
+
+@media (max-width: 576px) {
+  .home-landing { min-height: calc(100vh - 90px); }
+}

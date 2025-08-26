@@ -46,13 +46,7 @@
   }
 }
 
-.btn-teal {
-  background: #00a4a9;
-  color: #fff;
-  border-radius: 8px;
-  padding: 10px 20px;
-}
-
-.btn-teal:hover { background: #009096; color: #fff; }
+.btn.btn-teal { background-color: #00a4a9 !important; border-color: #00a4a9 !important; color: #fff !important; border-radius: 8px; padding: 10px 20px; font-weight: 700; }
+.btn.btn-teal:hover { background-color: #009096 !important; border-color: #009096 !important; color: #fff !important; }
 
 .page-title { margin: 0 0 16px 0; font-weight: 600; color: #003a5d; }

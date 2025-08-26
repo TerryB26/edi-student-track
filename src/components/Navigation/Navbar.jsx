@@ -1,14 +1,21 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './Navbar.css';
+import { subscribeProgress } from '../../lib/progress';
+import { getTotalUnits, track } from '../../lib/track';
 
 const Navbar = ({ onToggle }) => {
   const [isCollapsed, setIsCollapsed] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
   const [activeItem, setActiveItem] = useState('Learning');
+  const [progress, setProgress] = useState({ completedUnitIds: [] });
+  const total = getTotalUnits();
+  const completed = progress.completedUnitIds?.length || 0;
+  const progressText = `${completed} / ${total}`;
+  const isDone = completed >= total;
+  const progressIcon = isDone ? '/images/assets/award.svg' : '/images/assets/flag.svg';
   const navigate = useNavigate();
 
-  // Check for mobile screen size
   useEffect(() => {
     const checkScreenSize = () => {
       setIsMobile(window.innerWidth <= 768);
@@ -20,11 +27,14 @@ const Navbar = ({ onToggle }) => {
     return () => window.removeEventListener('resize', checkScreenSize);
   }, []);
 
+  useEffect(() => {
+    const unsub = subscribeProgress(setProgress);
+    return unsub;
+  }, []);
+
   const toggleCollapse = () => {
     const newCollapsedState = !isCollapsed;
     setIsCollapsed(newCollapsedState);
-    
-    // Notify parent component about the toggle
     if (onToggle) {
       onToggle(newCollapsedState);
     }
@@ -32,8 +42,6 @@ const Navbar = ({ onToggle }) => {
 
   const handleItemClick = (itemName) => {
     setActiveItem(itemName);
-    
-    // Handle navigation based on item clicked
     switch (itemName) {
       case 'Log Out':
         navigate('/login');
@@ -51,7 +59,6 @@ const Navbar = ({ onToggle }) => {
         navigate('/help');
         break;
       default:
-        // For other items, just set as active for now
         break;
     }
   };
@@ -68,11 +75,12 @@ const Navbar = ({ onToggle }) => {
       active: true,
       type: 'item'
     },
-    { 
-      name: 'Coach Nova', 
-  icon: '/images/assets/user.svg',
-      type: 'item'
-    },
+      { 
+        name: 'Coach Nova', 
+        icon: '/images/assets/user.svg',
+        type: 'item',
+        onClick: () => navigate('/coach-nova')
+      },
     { 
       name: 'My Achievements', 
       icon: '/images/assets/award.svg',
@@ -118,42 +126,71 @@ const Navbar = ({ onToggle }) => {
     <nav className={`navbar ${isCollapsed ? 'collapsed' : ''} ${isMobile ? 'mobile' : 'desktop'}`}>
       <div className="navbar-container">
         <div className="navbar-content">
-          {/* Logo Section */}
           <div className="navbar-logo">
-            {isMobile ? (
-              <img src="/images/Logo.png" alt="Edinova" className="logo-full" />
-            ) : (
-              isCollapsed ? (
-                <div className="logo-collapsed">
-                  <img src="/images/assets/group-10.svg" alt="Edinova Mark" className="logo-icon" />
-                </div>
-              ) : (
+            <div className="navbar-header">
+              {isMobile ? (
                 <img src="/images/Logo.png" alt="Edinova" className="logo-full" />
-              )
-            )}
-
-            {isMobile && (
-              <button 
-                className="mobile-toggle"
-                onClick={toggleCollapse}
-                aria-label={isCollapsed ? 'Open menu' : 'Close menu'}
-              >
-                {isCollapsed ? (
-                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M4 7h16M4 12h16M4 17h16" stroke="#4B4B4B" strokeWidth="2" strokeLinecap="round"/>
-                  </svg>
+              ) : (
+                isCollapsed ? (
+                  <div className="logo-collapsed">
+                    <img src="/images/assets/group-10.svg" alt="Edinova Mark" className="logo-icon" />
+                  </div>
                 ) : (
-                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M6 6l12 12M18 6l-12 12" stroke="#4B4B4B" strokeWidth="2" strokeLinecap="round"/>
-                  </svg>
-                )}
-              </button>
+                  <img src="/images/Logo.png" alt="Edinova" className="logo-full" />
+                )
+              )}
+
+              {isMobile ? (
+                <button 
+                  className="mobile-toggle"
+                  onClick={toggleCollapse}
+                  aria-label={isCollapsed ? 'Open menu' : 'Close menu'}
+                >
+                  {isCollapsed ? (
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M4 7h16M4 12h16M4 17h16" stroke="#4B4B4B" strokeWidth="2" strokeLinecap="round"/>
+                    </svg>
+                  ) : (
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M6 6l12 12M18 6l-12 12" stroke="#4B4B4B" strokeWidth="2" strokeLinecap="round"/>
+                    </svg>
+                  )}
+                </button>
+              ) : (
+                <button
+                  className="desktop-toggle"
+                  onClick={toggleCollapse}
+                  aria-label={isCollapsed ? 'Expand menu' : 'Collapse menu'}
+                  title={isCollapsed ? 'Expand menu' : 'Collapse menu'}
+                >
+                  <img 
+                    src="/images/assets/arrow-forward-filled.svg" 
+                    alt="Toggle" 
+                    className={`toggle-icon ${isCollapsed ? 'rotated' : ''}`} 
+                  />
+                </button>
+              )}
+            </div>
+
+            {!isCollapsed && (
+              <div className="navbar-track">
+                <div className="track-title" aria-label="Track title">{track.title}</div>
+                <button
+                  type="button"
+                  className={`track-progress ${isDone ? 'done' : ''}`}
+                  aria-label={`Progress ${progressText} complete. View your journey`}
+                  title="View your journey"
+                  onClick={() => navigate('/units')}
+                >
+                  <img src={progressIcon} alt="" className="progress-icon" aria-hidden="true" />
+                  <span className="progress-count">{progressText}</span>
+                  <span className="progress-label">complete</span>
+                </button>
+              </div>
             )}
           </div>
 
-          {/* Navigation Items */}
           <div className="navbar-items">
-            {/* Main Navigation */}
             <div className="nav-section">
               {navigationItems.map((item, index) => (
                 <div key={index}>
@@ -166,7 +203,10 @@ const Navbar = ({ onToggle }) => {
                   ) : (
                     <button
                       className={`nav-item ${item.name === 'My Journey' ? 'journey' : ''} ${activeItem === item.name ? 'active' : ''} ${item.disabled ? 'disabled' : ''}`}
-                      onClick={() => !item.disabled && handleItemClick(item.name)}
+                      onClick={() => {
+                        if (item.disabled) return;
+                        if (item.onClick) item.onClick(); else handleItemClick(item.name);
+                      }}
                       disabled={item.disabled}
                       title={isCollapsed ? item.name : ''}
                     >
@@ -181,10 +221,8 @@ const Navbar = ({ onToggle }) => {
               ))}
             </div>
 
-            {/* Divider */}
             <div className="nav-divider"></div>
 
-            {/* Account Section */}
             <div className="nav-section">
               {accountItems.map((item, index) => (
                 <div key={index}>
@@ -209,25 +247,6 @@ const Navbar = ({ onToggle }) => {
             </div>
           </div>
         </div>
-
-        {/* Collapse Toggle (desktop only) */}
-        {!isMobile && (
-          <div className="navbar-footer">
-            <button 
-              className="collapse-toggle"
-              onClick={toggleCollapse}
-              title={isCollapsed ? 'Expand Menu' : 'Collapse Menu'}
-              aria-label={isCollapsed ? 'Open menu' : 'Close menu'}
-            >
-              <img 
-                src="/images/assets/arrow-forward-filled.svg" 
-                alt="Toggle" 
-                className={`toggle-icon ${isCollapsed ? 'rotated' : ''}`} 
-              />
-              {!isCollapsed && <span className="nav-text">Collapse Menu</span>}
-            </button>
-          </div>
-        )}
       </div>
     </nav>
   );

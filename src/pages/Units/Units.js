@@ -1,13 +1,16 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Units from '../../components/Units/Units';
+import { subscribeProgress } from '../../lib/progress';
+import { track } from '../../lib/track';
 
 export default function UnitsPage() {
-  const units = [
-    { title: 'Unit 1', description: 'Introduction and basics.' },
-    { title: 'Unit 2', description: 'Intermediate concepts.' },
-    { title: 'Unit 3', description: 'Advanced practice.' },
-    { title: 'Unit 4', description: 'Assessment and wrap-up.' },
-  ];
+  const [progress, setProgress] = useState({ completedUnitIds: [] });
+  useEffect(() => {
+    const unsub = subscribeProgress(setProgress);
+    return unsub;
+  }, []);
 
-  return <Units units={units} />;
+  // Flatten units from sections for backward compatibility with Units props
+  const units = track.sections.flatMap(s => s.units);
+  return <Units units={units} progress={progress} />;
 }

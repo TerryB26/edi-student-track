@@ -11,10 +11,11 @@ const items = [
 
 export default function HYEW({ sectionLabel, moduleTitle, onBack, onReport, onKeepGoing, onSkip }) {
   // State machine for the micro-lesson
-  // stages: 'choose' | 'detail' | 'prompt' | 'inventor' | 'result-success' | 'result-fail'
+  // stages: 'choose' | 'detail' | 'prompt' | 'inventor' | 'business' | 'result-success' | 'result-fail'
   const [stage, setStage] = useState('choose');
   const [selected, setSelected] = useState(null);
   const [inventorText, setInventorText] = useState('');
+  const [businessText, setBusinessText] = useState('');
 
   const selectedItem = useMemo(() => items.find(i => i.id === selected), [selected]);
 
@@ -107,7 +108,7 @@ export default function HYEW({ sectionLabel, moduleTitle, onBack, onReport, onKe
                 <i className="bi bi-lightbulb-fill"></i>
                 <span>Think Like an Inventor</span>
               </button>
-              <button className="prompt-btn prompt-green" onClick={() => alert('Business Opportunity coming soon')}>
+              <button className="prompt-btn prompt-green" onClick={() => setStage('business')}>
                 <i className="bi bi-buildings-fill"></i>
                 <span>Business Opportunity</span>
               </button>
@@ -150,6 +151,43 @@ export default function HYEW({ sectionLabel, moduleTitle, onBack, onReport, onKe
             </div>
           </div>
           <img className="inventor-figure" src="/images/assets/corner-man.png" alt="Coach" />
+        </div>
+      )}
+
+    {stage === 'business' && (
+        <div className="business-wrap">
+      <img className="business-figure" src="/images/assets/help-man.png" alt="Coach" />
+          <div className="business-card">
+            <div className="business-header">
+              <i className="bi bi-lock-fill"></i>
+              <h3>Business Opportunity</h3>
+            </div>
+            <p className="business-sub">
+              You found a supplier who makes eco-friendly disposable forks with cool designs at a cheap
+              price. There's a chance to make money. What types of businesses would you approach to sell
+              them to, and why?
+            </p>
+            <div className="business-input">
+              <textarea
+                placeholder="I would create..."
+                value={businessText}
+                onChange={(e) => setBusinessText(e.target.value)}
+                rows={5}
+              />
+            </div>
+            <div className="business-actions">
+              <button
+                className="business-submit"
+                disabled={businessText.trim().length < 5}
+                onClick={() => {
+                  const ok = businessText.trim().length >= 25; // simple heuristic
+                  setStage(ok ? 'result-success' : 'result-fail');
+                }}
+              >
+                Submit
+              </button>
+            </div>
+          </div>
         </div>
       )}
 

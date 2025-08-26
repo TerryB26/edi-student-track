@@ -1,0 +1,28 @@
+.cn-page { padding: 16px; }
+.cn-card { background: #fff; border-radius: 16px; color: #111; overflow: hidden; }
+.cn-title { text-align: center; margin: 0 0 12px; opacity: 0.9; }
+.cn-hero { background: #0b3d52; color: #fff; padding: 18px 20px 12px; text-align: center; }
+.cn-hero-title { display: inline-flex; align-items: center; gap: 10px; font-weight: 800; font-size: 20px; }
+.cn-hero-title img { width: 22px; height: 22px; display: inline-block; }
+.cn-hero-subtitle { margin-top: 6px; opacity: 0.9; font-size: 14px; }
+.cn-body { background: #0b3d52; padding: 0 16px 16px; }
+.cn-chat { background: #083042; border-radius: 0 0 12px 12px; padding: 12px; height: 60vh; overflow-y: auto; }
+.cn-msg { display: flex; align-items: flex-end; gap: 8px; margin: 8px 0; }
+.cn-msg.left { justify-content: flex-start; }
+.cn-msg.right { justify-content: flex-end; }
+.cn-avatar { font-size: 18px; }
+.cn-bubble { background: #bfe2ff; color: #0b3d52; padding: 10px 12px; border-radius: 12px; max-width: 70%; }
+.cn-msg.right .cn-bubble { background: #16a3a8; color: #fff; }
+.cn-bubble.typing { background: #bfe2ff; }
+.cn-typing { display: inline-flex; gap: 4px; align-items: center; }
+.cn-typing .dot { width: 6px; height: 6px; background: #0b3d52; opacity: 0.6; border-radius: 50%; animation: cn-bounce 1.2s infinite ease-in-out; }
+.cn-typing .dot:nth-child(2) { animation-delay: 0.15s; }
+.cn-typing .dot:nth-child(3) { animation-delay: 0.3s; }
+@keyframes cn-bounce {
+	0%, 80%, 100% { transform: translateY(0); opacity: 0.6; }
+	40% { transform: translateY(-3px); opacity: 1; }
+}
+.cn-input { display: flex; gap: 8px; margin-top: 12px; }
+.cn-input input { flex: 1; border: 1px solid #e5e7eb; border-radius: 12px; padding: 10px 12px; }
+.cn-input button { background: #16a3a8; color: #fff; border: none; border-radius: 12px; padding: 10px 16px; font-weight: 700; }
+.cn-input button:hover { filter: brightness(0.95); }

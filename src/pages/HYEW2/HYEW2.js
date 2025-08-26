@@ -1,23 +1,21 @@
 import React from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import HYEW from "../../components/HYEW/HYEW";
+import HYEW2 from "../../components/HYEW2/HYEW2";
 
-export default function HYEWPage() {
+export default function HYEW2Page() {
   const { unitId } = useParams();
   const navigate = useNavigate();
 
-  const sectionLabel = `Section ${unitId || 1}, Module 1`;
+  const sectionLabel = `Section ${unitId || 1}, Module 2`;
   const moduleTitle = "See, Think, Innovate";
 
   return (
-    <HYEW
+    <HYEW2
       sectionLabel={sectionLabel}
       moduleTitle={moduleTitle}
-      onBack={() => navigate("/units")}
+      onBack={() => navigate(`/units/${unitId || 1}`)}
       onReport={() => alert("Report submitted")}
-      onKeepGoing={() => {
-        /* keep within HYEW, show prompt */
-      }}
+      onKeepGoing={() => { /* keep within HYEW2, show prompt */ }}
       onSkip={() => navigate(`/units/${unitId || 1}`)}
     />
   );
